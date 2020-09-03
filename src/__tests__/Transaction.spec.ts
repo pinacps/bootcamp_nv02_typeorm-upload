@@ -34,6 +34,7 @@ describe('Transaction', () => {
   });
 
   it('should be able to list transactions', async () => {
+
     await request(app).post('/transactions').send({
       title: 'March Salary',
       type: 'income',
@@ -47,14 +48,14 @@ describe('Transaction', () => {
       value: 4000,
       category: 'Salary',
     });
-
+    
     await request(app).post('/transactions').send({
       title: 'Macbook',
       type: 'outcome',
       value: 6000,
       category: 'Eletronics',
     });
-
+    
     const response = await request(app).get('/transactions');
 
     expect(response.body.transactions).toHaveLength(3);
